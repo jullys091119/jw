@@ -1,6 +1,8 @@
 import React from 'react'
 import {Text, Image, StyleSheet, View, StatusBar} from 'react-native';
 import * as Animatable from 'react-native-animatable';
+import { LoadIicon } from './nativePaper';
+
 const Load = () => {
   return (
     <View style={styles.container}>
@@ -16,6 +18,7 @@ const Load = () => {
           <Text style={styles.textNombre}>Julián Ontiveros Ramírez</Text>
         </View>        
       </View>
+     <LoadIicon/>
     </View>
   )
 }
@@ -28,7 +31,9 @@ const styles = StyleSheet.create ({
     backgroundColor: '#800080',
     height: '100%',
   },
-  
+  iconLoad: {
+    backgroundColor:"red"
+  },
   contain: {
     width:'100%',
     display: 'flex',
