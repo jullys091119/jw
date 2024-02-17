@@ -1,12 +1,26 @@
-import React from 'react'
-import { View,Text } from 'react-native'
+import { useContext } from 'react'
+import React, {useEffect, useState } from 'react'
+import { View,Text, StyleSheet } from 'react-native'
+import { modeBlackContext } from '../context/context'
+import AsyncStorage from '@react-native-async-storage/async-storage'
 
-export const Home = () => {
+const Home =  () => {
+  const {modeColor,getValueModeColor} = useContext(modeBlackContext)
+
+  useEffect(()=> {
+    getValueModeColor()
+  })
   return (
-   <View>
-    <Text>Bienvenido</Text>
+   <View style={[styles.container, {backgroundColor:`${modeColor}`}]}>
+    
    </View>
   )
 }
+
+const styles = StyleSheet.create({
+ container: {
+  flex:1,
+ }
+})
 
 export default Home
