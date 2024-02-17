@@ -2,14 +2,13 @@ import { useContext } from 'react'
 import React, {useEffect, useState } from 'react'
 import { View,Text, StyleSheet } from 'react-native'
 import { modeBlackContext } from '../context/context'
-import AsyncStorage from '@react-native-async-storage/async-storage'
 
 const Home =  () => {
   const {modeColor,getValueModeColor} = useContext(modeBlackContext)
 
   useEffect(()=> {
     getValueModeColor()
-  })
+  },[])
   return (
    <View style={[styles.container, {backgroundColor:`${modeColor}`}]}>
     

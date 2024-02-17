@@ -1,11 +1,10 @@
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { Button } from "react-native-paper";
 import { StyleSheet, Text, View } from "react-native";
 import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
 import { useNavigation } from "@react-navigation/native";
-import { modeBlackContext } from '../context/context'
+import { modeBlackContext } from "../context/context";
 import AsyncStorage from "@react-native-async-storage/async-storage";
-
 
 const Icon = ({ color }) => (
   <View>
@@ -14,23 +13,38 @@ const Icon = ({ color }) => (
 );
 
 const IconSunOn = ({ color }) => {
-  const [isClicked, setIsClicked] = useState(false)
-  const {setModeColor} = useContext(modeBlackContext)
+  const [isClicked, setIsClicked] = useState(false);
+
+  const { setModeColor,modeColor } = useContext(modeBlackContext);
 
   const handleIconPress = () => {
-    setIsClicked(!isClicked);
-    setModeColor(isClicked ? '#ffffff' : '#333333');
+    setIsClicked(!isClicked)
+    setModeColor(isClicked ? "#ffffff" : "#333333");
   };
 
   return (
-  <View>
-    <MaterialCommunityIcons
-      name="weather-sunny"
-      size={30}
-      color="white"
-      onPress={()=> {handleIconPress()}}/>
-  </View>
-  )
+    <View>
+      {modeColor == '#333333' ? (
+      <MaterialCommunityIcons
+        name="weather-sunny-off"
+        size={30}
+        color="white"
+        onPress={() => {
+          handleIconPress();
+        }}
+      />
+      ):(
+        <MaterialCommunityIcons
+          name="weather-sunny"
+          size={30}
+          color="white"
+          onPress={() => {
+            handleIconPress();
+          }}
+        />
+      )}
+    </View>
+  );
 };
 
 const LoadIicon = () => {
@@ -51,7 +65,7 @@ const LoadIicon = () => {
 const styles = StyleSheet.create({
   btnLoad: {
     backgroundColor: "white",
-    position: "absolute", 
+    position: "absolute",
     bottom: 30,
     right: 10,
     paddingVertical: 5,

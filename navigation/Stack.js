@@ -4,7 +4,7 @@ import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { Button } from "react-native";
 import Home from "../components/Home";
 import Load from "../components/Load";
-import { IconSunOn } from "../components/nativePaper";
+import { IconSunOn, IconSunOff } from "../components/nativePaper";
 import { Icon } from "react-native-paper";
 
 
@@ -45,7 +45,10 @@ const Stack = () => {
             gestureDirection: "horizontal",
             headerBackVisible: false,
             headerRight: () => (
-             <IconSunOn/>
+              <>
+              <IconSunOn/>
+        
+              </>
             ),
           }}
         />
