@@ -1,49 +1,79 @@
-
-import { Button } from 'react-native-paper';
-import { StyleSheet,Text, View } from 'react-native';
-
-import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
-import { useNavigation } from '@react-navigation/native';
-
+import { useContext, useEffect, useState } from "react";
+import { Button } from "react-native-paper";
+import { StyleSheet, Text, View } from "react-native";
+import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
+import { useNavigation } from "@react-navigation/native";
+import { modeBlackContext } from "../context/context";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 const Icon = ({ color }) => (
   <View>
-      <MaterialCommunityIcons name="arrow-right-thin" size={30} color="#333333" /> 
+    <MaterialCommunityIcons name="arrow-right-thin" size={30} color="#333333" />
   </View>
 );
 
+const IconSunOn = ({ color }) => {
+  const [isClicked, setIsClicked] = useState(false);
+
+  const { setModeColor,modeColor } = useContext(modeBlackContext);
+
+  const handleIconPress = () => {
+    setIsClicked(!isClicked)
+    setModeColor(isClicked ? "#ffffff" : "#333333");
+  };
+
+  return (
+    <View>
+      {modeColor == '#333333' ? (
+      <MaterialCommunityIcons
+        name="weather-sunny-off"
+        size={30}
+        color="white"
+        onPress={() => {
+          handleIconPress();
+        }}
+      />
+      ):(
+        <MaterialCommunityIcons
+          name="weather-sunny"
+          size={30}
+          color="white"
+          onPress={() => {
+            handleIconPress();
+          }}
+        />
+      )}
+    </View>
+  );
+};
+
 const LoadIicon = () => {
+  const navigation = useNavigation();
 
-    const navigation = useNavigation();
-
-    return (
-        <Button 
-         icon={Icon}
-         mode="contained"
-         onPress={() => navigation.navigate("Home")}
-         style={styles.btnLoad}
-         >
-          <Text style={styles.txtStart}>Comezemos...</Text>
-        </Button>
-
-    )
-    };
-
+  return (
+    <Button
+      icon={Icon}
+      mode="contained"
+      onPress={() => navigation.navigate("Home")}
+      style={styles.btnLoad}
+    >
+      <Text style={styles.txtStart}>Comezar...</Text>
+    </Button>
+  );
+};
 
 const styles = StyleSheet.create({
- btnLoad :{
-    backgroundColor: 'white',
+  btnLoad: {
+    backgroundColor: "white",
     position: "absolute",
-    bottom:30,
+    bottom: 30,
     right: 10,
     paddingVertical: 5,
-    
+  },
 
- },
+  txtStart: {
+    color: "#333333",
+  },
+});
 
- txtStart: {
-    color: "#333333"
- }
-})
-
-export {LoadIicon}
+export { LoadIicon, IconSunOn };

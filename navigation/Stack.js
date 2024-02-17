@@ -1,8 +1,12 @@
 import React from "react";
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
+import { Button } from "react-native";
 import Home from "../components/Home";
 import Load from "../components/Load";
+import { IconSunOn, IconSunOff } from "../components/nativePaper";
+import { Icon } from "react-native-paper";
+
 
 const Stack = () => {
   const Stack = createNativeStackNavigator();
@@ -12,7 +16,13 @@ const Stack = () => {
       <Stack.Navigator
         initialRouteName="Load"
         screenOptions={{
-          headerShown: false,
+          headerStyle: {
+            backgroundColor: '#800080',
+          },
+          headerTintColor: '#fff',
+          headerTitleStyle: {
+            fontWeight: 'bold',
+          },
         }}
       >
         <Stack.Screen
@@ -22,6 +32,7 @@ const Stack = () => {
             title: "Load",
             gestureEnabled: true,
             gestureDirection: "horizontal",
+            headerShown: false,
           }}
         />
 
@@ -29,9 +40,16 @@ const Stack = () => {
           name="Home"
           component={Home}
           options={{
-            title: "Home",
+            title: "Bienvenido",
             gestureEnabled: true,
             gestureDirection: "horizontal",
+            headerBackVisible: false,
+            headerRight: () => (
+              <>
+              <IconSunOn/>
+        
+              </>
+            ),
           }}
         />
       </Stack.Navigator>
