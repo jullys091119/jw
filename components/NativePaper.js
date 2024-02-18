@@ -1,10 +1,10 @@
 import { useContext, useEffect, useState } from "react";
-import { Button } from "react-native-paper";
+import { Button, Card,Avatar, IconButton,Title } from "react-native-paper";
 import { StyleSheet, Text, View } from "react-native";
 import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
 import { useNavigation } from "@react-navigation/native";
 import { modeBlackContext } from "../context/context";
-import AsyncStorage from "@react-native-async-storage/async-storage";
+
 
 const Icon = ({ color }) => (
   <View>
@@ -62,6 +62,21 @@ const LoadIicon = () => {
   );
 };
 
+
+const CardSettingPublication = ({titulo,imagen}) => {
+  return (
+    <Card.Title
+      title={titulo}
+      subtitle="Como responder ?"
+      left={() => <Avatar.Image source={{uri:imagen}} size={50}/>}
+      right={() => <IconButton icon="dots-vertical"  onPress={() => {}} iconColor="white" />}
+      style={styles.card}
+      titleStyle={styles.title}
+      subtitleStyle={styles.subtitle}
+    />
+  )
+};
+
 const styles = StyleSheet.create({
   btnLoad: {
     backgroundColor: "white",
@@ -70,10 +85,31 @@ const styles = StyleSheet.create({
     right: 10,
     paddingVertical: 5,
   },
-
+  card: {
+    backgroundColor: "purple",
+    marginVertical: 10,
+    marginHorizontal:10,
+    borderRadius: 7,
+    height: 100,
+    height: 100
+  },
+  title: {
+   color: "white",
+   fontSize: 26,
+   marginVertical: 0
+  },
   txtStart: {
     color: "#333333",
   },
+  subtitle: {
+    color: "white"
+  },
+
+  right: {
+    color: "white"
+  }
+
+
 });
 
-export { LoadIicon, IconSunOn };
+export { LoadIicon, IconSunOn, CardSettingPublication  };

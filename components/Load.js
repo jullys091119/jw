@@ -1,7 +1,7 @@
 import React from 'react'
 import {Text, Image, StyleSheet, View, StatusBar} from 'react-native';
 import * as Animatable from 'react-native-animatable';
-import { LoadIicon } from './nativePaper';
+import { LoadIicon } from './NativePaper';
 
 const Load = () => {
   return (
