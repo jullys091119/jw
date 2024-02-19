@@ -1,5 +1,5 @@
 import React, {useEffect} from 'react';
-import Stack from './navigation/Stack';
+import Stacks from './navigation/Stack';
 import { PaperProvider } from 'react-native-paper';
 import { AppProvider } from './context/context';
 import * as Font from 'expo-font';
@@ -19,7 +19,7 @@ const App = () => {
   return (
   <AppProvider>
     <PaperProvider>
-      <Stack/>
+      <Stacks/>
     </PaperProvider>
   </AppProvider>
   );

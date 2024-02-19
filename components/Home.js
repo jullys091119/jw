@@ -1,27 +1,26 @@
-import { useContext } from 'react'
-import React, {useEffect, useState } from 'react'
-import { 
+import { useContext } from "react";
+import React, { useEffect, useState } from "react";
+import {
   View,
   Text,
   StyleSheet,
   SafeAreaView,
   FlatList,
-  ScrollView,
-  Image
-} from 'react-native'
-import { modeBlackContext } from '../context/context'
-import { readData } from '../firebase';
-import { CardSettingPublication,SearchContent } from './NativePaper';
+} from "react-native";
+import { modeBlackContext } from "../context/context";
+import { readData } from "../firebase";
+import { CardSettingPublication, SearchContent } from "./NativePaper";
+import { IconSunOn, LogoJw } from "../components/NativePaper";
 
-const Home =  () => {
-  const {modeColor,getValueModeColor} = useContext(modeBlackContext)
-  const [data,setData] = useState({})
+const Home = () => {
+  const { modeColor, getValueModeColor } = useContext(modeBlackContext);
+  const [data, setData] = useState({});
 
   const gettingPublications = async () => {
-    const  data = await readData()
-    setData(data)
-  }
-  console.log(modeColor, "Mode color")
+    const data = await readData();
+    setData(data);
+  };
+  console.log(modeColor, "Mode color");
   const SetCardPublication = () => (
     <SafeAreaView style={styles.container}>
       <FlatList
@@ -30,65 +29,87 @@ const Home =  () => {
         showsHorizontalScrollIndicator={false}
         data={data}
         renderItem={({ item }) => (
-          <CardSettingPublication   
-            titulo={item.titulo}
-            imagen={item.imagen}
-          />
+          <CardSettingPublication titulo={item.titulo} imagen={item.imagen} />
         )}
-        keyExtractor={item => item.titulo}
+        keyExtractor={(item) => item.titulo}
       />
     </SafeAreaView>
   );
-  
-  useEffect(()=> {
-    getValueModeColor()
-    gettingPublications()
-  },[])
+
+  useEffect(() => {
+    getValueModeColor();
+    gettingPublications();
+  }, []);
+
   return (
-    <View style={[styles.container, {backgroundColor:`${modeColor}`}]}>
-      <SearchContent/>
-      <View style={[styles.containerCards, {backgroundColor:`${modeColor}`}]}>
-      <Text style={[modeColor == "#333333"?styles.titleColor: styles.title]}>Publicaciones</Text>
-        <SetCardPublication/>
+    <>
+      <SafeAreaView>
+        <View style={styles.headerHome}>
+          <LogoJw/>
+         <IconSunOn/>
+        </View>
+      </SafeAreaView>
+
+      <View style={[styles.container, { backgroundColor: `${modeColor}` }]}>
+        <SearchContent />
+        <View
+          style={[styles.containerCards, { backgroundColor: `${modeColor}` }]}
+        >
+          <Text
+            style={[modeColor == "#333333" ? styles.titleColor : styles.title]}
+          >
+            Publicaciones
+          </Text>
+          <SetCardPublication />
+        </View>
       </View>
-    </View>
-  )
-}
+    </>
+  );
+};
 
 const styles = StyleSheet.create({
+  container: {
+    display: "flex",
+    flex: 1,
+    justifyContent: "center",
+    paddingHorizontal: 4,
+    fontFamily: "righteous",
+  },
 
- container: {
-  display: "flex",
-  flex: 1,
-  justifyContent: "center",
-  paddingHorizontal: 4,
-  fontFamily: "righteous"
- },
+  containerCards: {
+    display: "flex",
+    backgroundColor: "white",
+    height: 370,
+    marginVertical: 50,
+  },
 
- containerCards:  {
-  display: "flex",
-  backgroundColor: "white",
-  height: 370,
-  marginVertical: 50
- }, 
+  title: {
+    fontSize: 25,
+    marginHorizontal: 20,
+    marginVertical: 30,
+    maxWidth: 200,
+    color: "#333333",
+    fontFamily: "merri",
+  },
 
- title: {
-  fontSize: 25,
-  marginHorizontal: 20,
-  marginVertical: 30,
-  maxWidth: 200,
-  color: "#333333",
-  fontFamily: "merri"
- },
+  titleColor: {
+    color: "white",
+    fontSize: 30,
+    marginHorizontal: 20,
+    marginVertical: 30,
+    fontFamily: "merri",
+  },
 
- titleColor: {
-  color: "white",
-  fontSize: 30,
-  marginHorizontal: 20,
-  marginVertical: 30,
-  fontFamily: "merri"
- }
+  headerHome: {
+    backgroundColor: "#800080",
+    height: 55,
+    display: "flex",
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center",
+    paddingHorizontal: 20,
+    marginTop: 30
+  },
+});
 
-})
-
-export default Home
+export default Home;
