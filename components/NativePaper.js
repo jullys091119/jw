@@ -1,9 +1,10 @@
 import { useContext, useEffect, useState } from "react";
-import { Button, Card,Avatar, IconButton,Title } from "react-native-paper";
+import { Button, Card, Avatar, IconButton,Title } from "react-native-paper";
 import { StyleSheet, Text, View } from "react-native";
 import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
 import { useNavigation } from "@react-navigation/native";
 import { modeBlackContext } from "../context/context";
+
 
 
 const Icon = ({ color }) => (
@@ -49,7 +50,6 @@ const IconSunOn = ({ color }) => {
 
 const LoadIicon = () => {
   const navigation = useNavigation();
-
   return (
     <Button
       icon={Icon}
@@ -63,19 +63,33 @@ const LoadIicon = () => {
 };
 
 
-const CardSettingPublication = ({titulo,imagen}) => {
+const CardSettingPublication = ({titulo,imagen,key}) => {
   return (
-    <Card.Title
-      title={titulo}
-      subtitle="Como responder ?"
-      left={() => <Avatar.Image source={{uri:imagen}} size={50}/>}
-      right={() => <IconButton icon="dots-vertical"  onPress={() => {}} iconColor="white" />}
-      style={styles.card}
-      titleStyle={styles.title}
-      subtitleStyle={styles.subtitle}
-    />
+    <Card mode="elevated" style={styles.card} key={key}>
+      <Card.Cover source={{uri:imagen}} style={styles.img}/>
+      <Card.Title title={titulo} subtitle="Card Subtitle"/>
+    </Card>
   )
 };
+
+const SearchContent = () => {
+  return (
+    <Card style={styles.cardContent}>
+      <Card.Content>
+        <Text  style={styles.searchText} variant="titleLarge">Buscar Publicacion</Text>
+      </Card.Content>
+      <Card style={styles.search}>
+        <View style={{display:"flex", flexDirection:"row"}}>
+          <MaterialCommunityIcons name="file-search-outline" size={30} color="gray"/>
+          <MaterialCommunityIcons name="bell-badge-outline" size={30} color="red"/>
+        </View>
+      </Card>
+    </Card>
+  )
+};
+
+
+
 
 const styles = StyleSheet.create({
   btnLoad: {
@@ -86,17 +100,13 @@ const styles = StyleSheet.create({
     paddingVertical: 5,
   },
   card: {
-    backgroundColor: "purple",
-    marginVertical: 10,
-    marginHorizontal:10,
-    borderRadius: 7,
-    height: 100,
-    height: 100
+    width: 190,
+    height: 200,
+    marginHorizontal: 10
   },
   title: {
    color: "white",
    fontSize: 26,
-   marginVertical: 0
   },
   txtStart: {
     color: "#333333",
@@ -104,12 +114,49 @@ const styles = StyleSheet.create({
   subtitle: {
     color: "white"
   },
-
+  img: {
+   width: '100%',
+   height: 130
+  },
   right: {
     color: "white"
+  },
+  cardContent: {
+    width: '82%',
+    height: 120,
+    borderRadius: 32,
+    justifyContent: "center",
+    marginLeft: 15,
+    padding: 10,
+    position: "relative",
+    backgroundColor: "#800080",
+  },
+  
+  searchText: {
+    fontSize: 23,
+    maxWidth: 150,
+    color:"white",
+    fontFamily: "merri"
+  },
+
+  search: {
+    height:60,
+    width: 80,
+    position: "absolute",
+    right: -44,
+    top:10,
+    padding: 15,
+    display: "flex",
+    flexDirection: "row",
+    backgroundColor: "white"
   }
 
 
 });
 
-export { LoadIicon, IconSunOn, CardSettingPublication  };
+export { 
+LoadIicon,
+IconSunOn,
+CardSettingPublication,
+SearchContent
+};
