@@ -102,13 +102,13 @@ const styles = StyleSheet.create({
 
   headerHome: {
     backgroundColor: "#800080",
-    height: 55,
+    height: 70,
     display: "flex",
     flexDirection: "row",
     justifyContent: "space-between",
     alignItems: "center",
     paddingHorizontal: 20,
-    marginTop: 30
+    paddingTop: 20
   },
 });
 
