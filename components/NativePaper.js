@@ -13,6 +13,11 @@ const Icon = ({ color }) => (
   </View>
 );
 
+
+const LogoJw = () => (
+  <Avatar.Image size={30} source={require('../assets/jw.png')} />
+);
+
 const IconSunOn = ({ color }) => {
   const [isClicked, setIsClicked] = useState(false);
 
@@ -67,7 +72,7 @@ const CardSettingPublication = ({titulo,imagen,key}) => {
   return (
     <Card mode="elevated" style={styles.card} key={key}>
       <Card.Cover source={{uri:imagen}} style={styles.img}/>
-      <Card.Title title={titulo} subtitle="Card Subtitle"/>
+      <Card.Title title={titulo} subtitle="Card Subtitle"  titleStyle={styles.titleCard} subtitleStyle={styles.subtitle}/>
     </Card>
   )
 };
@@ -87,8 +92,6 @@ const SearchContent = () => {
     </Card>
   )
 };
-
-
 
 
 const styles = StyleSheet.create({
@@ -131,14 +134,12 @@ const styles = StyleSheet.create({
     position: "relative",
     backgroundColor: "#800080",
   },
-  
   searchText: {
     fontSize: 23,
     maxWidth: 150,
     color:"white",
     fontFamily: "merri"
   },
-
   search: {
     height:60,
     width: 80,
@@ -148,7 +149,15 @@ const styles = StyleSheet.create({
     padding: 15,
     display: "flex",
     flexDirection: "row",
-    backgroundColor: "white"
+    backgroundColor: "white",
+    fontFamily: "merri"
+  },
+  titleCard: {
+    fontSize: 19,
+    fontFamily: "merri"
+  },
+  subtitle: {
+    fontSize: 15
   }
 
 
@@ -158,5 +167,6 @@ export {
 LoadIicon,
 IconSunOn,
 CardSettingPublication,
-SearchContent
+SearchContent,
+LogoJw
 };

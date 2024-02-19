@@ -4,7 +4,7 @@ import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { Button } from "react-native";
 import Home from "../components/Home";
 import Load from "../components/Load";
-import { IconSunOn, IconSunOff } from "../components/NativePaper";
+import { IconSunOn, IconSunOff,LogoJw } from "../components/NativePaper";
 import { Icon } from "react-native-paper";
 
 
@@ -40,10 +40,16 @@ const Stack = () => {
           name="Home"
           component={Home}
           options={{
-            title: "Bienvenido",
+            title: "",
+            headerTitle: false,
             gestureEnabled: true,
             gestureDirection: "horizontal",
             headerBackVisible: false,
+            headerLeft: () => (
+              <>
+               <LogoJw/>
+              </>
+            ),
             headerRight: () => (
               <>
               <IconSunOn/>
