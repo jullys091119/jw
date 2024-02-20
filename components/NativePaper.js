@@ -13,6 +13,16 @@ const Icon = ({ color }) => (
   </View>
 );
 
+const IconChevronDown = ({ color, opened, id }) => {
+  return (
+    <>
+      <View>
+        <MaterialCommunityIcons name={opened ? "chevron-up" : "chevron-down"} size={30} color="#333333" />
+      </View>
+    </>
+  );
+};
+
 
 const LogoJw = () => (
   <Avatar.Image size={30} source={require('../assets/jw.png')} />
@@ -69,8 +79,9 @@ const LoadIicon = () => {
 
 
 const CardSettingPublication = ({titulo,imagen,key}) => {
+  const navigation = useNavigation();
   return (
-    <Card mode="elevated" style={styles.card} key={key}>
+    <Card mode="elevated" style={styles.card} key={key} onPress={()=>{navigation.navigate("Questions")}} >
       <Card.Cover source={{uri:imagen}} style={styles.img}/>
       <Card.Title title={titulo} subtitle="Card Subtitle"  titleStyle={styles.titleCard} subtitleStyle={styles.subtitle}/>
     </Card>
@@ -168,5 +179,6 @@ LoadIicon,
 IconSunOn,
 CardSettingPublication,
 SearchContent,
-LogoJw
+LogoJw,
+IconChevronDown
 };
