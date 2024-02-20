@@ -6,6 +6,7 @@ import Load from "../components/Load";
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import Texts from "../components/Texts";
+import Questions from "../screens/Questions";
 
 const Tab = createBottomTabNavigator();
 const Stack = createNativeStackNavigator();
@@ -70,6 +71,16 @@ const Stacks = () => {
           component={Load}
           options={{
             title: "Load",
+            gestureEnabled: true,
+            gestureDirection: "horizontal",
+            headerShown: false,
+          }}
+        />
+         <Stack.Screen
+          name="Questions"
+          component={Questions}
+          options={{
+            title: "Questions",
             gestureEnabled: true,
             gestureDirection: "horizontal",
             headerShown: false,

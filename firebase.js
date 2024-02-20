@@ -18,16 +18,23 @@ const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 
 
-const readData = async () => {
+const readData = async (id) => {
  const publications = await getDocs (collection(db, "publicaciones"));
  let  obj = []
  publications.forEach((doc)=> {
+    id = doc.id
     const publication = {
+    id: doc.id,
     imagen: doc.data().foto,
-    titulo: doc.data().titulo
+    titulo: doc.data().titulo,
+    questions: doc.data().preguntas,
+    answers: doc.data().respuestas
    }
+  
    obj.push(publication)
+
   })
+ 
   return obj
 }
 
