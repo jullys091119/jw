@@ -1,42 +1,31 @@
 import React, { useState, useEffect } from "react";
 import Accordion from "../components/Acordion";
 import { View, Text, SafeAreaView, StyleSheet, ScrollView } from "react-native";
-import { readData } from "../firebase";
 
-const Questions = () => {
-  const [data, setData] = useState({});
-  const [question, setQuestion] = useState('')
-  const [answers,setAnswers] = useState("")
-  
-  const gettingPublications = async () => {
-    const data = await readData();
-     data.forEach((e)=> {e.questions, "questios"})
-    setData(data);
-  };
+
+const Questions = ({ route }) => {
+  const { pregunta,respuestas } = route.params || {}; // Asegúrate de que route.params sea un objeto
 
   useEffect(() => {
-    gettingPublications();
-  }, []);
+  }, [pregunta]);
 
   return (
     <SafeAreaView style={{ flex: 1, padding: 20 }}>
       <ScrollView>
         <Text style={styles.title}>Preguntas frecuentes</Text>
         <View style={styles.container}>
-          {Object.keys(data).map((el, index) => {  
-            return (
-                <View key={data[el].id}>
-                    <Accordion question={data[el].questions} answers={answers[index]} />
-                </View>
-            )
-                
-                
-          })}
+          {pregunta &&
+            pregunta.map((item, index) => (
+              <Accordion
+                key={index}
+                questions={item}
+                answers={respuestas[index]}
+              />
+            ))}
         </View>
       </ScrollView>
     </SafeAreaView>
   );
-  
 };
 
 const styles = StyleSheet.create({

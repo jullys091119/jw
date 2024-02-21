@@ -76,16 +76,20 @@ const LoadIicon = () => {
     </Button>
   );
 };
-
-
-const CardSettingPublication = ({titulo,imagen,key}) => {
+const CardSettingPublication = ({ titulo, imagen, preguntas, respuestas }) => {
   const navigation = useNavigation();
   return (
-    <Card mode="elevated" style={styles.card} key={key} onPress={()=>{navigation.navigate("Questions")}} >
-      <Card.Cover source={{uri:imagen}} style={styles.img}/>
-      <Card.Title title={titulo} subtitle="Card Subtitle"  titleStyle={styles.titleCard} subtitleStyle={styles.subtitle}/>
+    <Card
+      mode="elevated"
+      style={styles.card}
+      onPress={() => {
+        navigation.navigate("Questions", { pregunta: preguntas, respuestas: respuestas });
+      }}
+    >
+      <Card.Cover source={{ uri: imagen }} style={styles.img} />
+      <Card.Title title={titulo} subtitle="Card Subtitle" titleStyle={styles.titleCard} subtitleStyle={styles.subtitle} />
     </Card>
-  )
+  );
 };
 
 const SearchContent = () => {
