@@ -14,13 +14,19 @@ import { IconSunOn, LogoJw } from "../components/NativePaper";
 
 const Home = () => {
   const { modeColor, getValueModeColor } = useContext(modeBlackContext);
-  const [data, setData] = useState({});
+  const [data, setData] = useState([]);
 
   const gettingPublications = async () => {
-    const data = await readData();
-    setData(data);
+    const publications = await readData(); // Obtener datos de Firebase
+    const formattedData = publications.map((publication) => ({
+      titulo: publication.titulo,
+      imagen: publication.imagen,
+      preguntas: publication.questions, // Array de preguntas de cada publicación
+      respuestas: publication.answers
+    }));
+    setData(formattedData);
   };
-  console.log(modeColor, "Mode color");
+
   const SetCardPublication = () => (
     <SafeAreaView style={styles.container}>
       <FlatList
@@ -29,7 +35,12 @@ const Home = () => {
         showsHorizontalScrollIndicator={false}
         data={data}
         renderItem={({ item }) => (
-          <CardSettingPublication titulo={item.titulo} imagen={item.imagen} />
+          <CardSettingPublication
+            titulo={item.titulo}
+            imagen={item.imagen}
+            preguntas={item.preguntas} // Pasar el array de preguntas al componente CardSettingPublication
+            respuestas={item.respuestas}
+          />
         )}
         keyExtractor={(item) => item.titulo}
       />
