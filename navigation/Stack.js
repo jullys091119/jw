@@ -41,6 +41,7 @@ function MyTabs() {
        name="Texts"
        component={Texts}
        options={{
+        headerShown: false,
         tabBarIcon: ({ color, size }) => (
           <MaterialCommunityIcons name="book-open-page-variant-outline" color='white' size={30} />
         ),       

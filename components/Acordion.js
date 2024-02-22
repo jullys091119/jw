@@ -1,10 +1,11 @@
 import { IconChevronDown } from "./NativePaper";
 import React, { useState, useEffect } from "react";
-import { View, StyleSheet, TouchableWithoutFeedback, Text, LayoutAnimation } from "react-native";
+import { View, StyleSheet, TouchableWithoutFeedback, Text, LayoutAnimation, Linking } from "react-native";
+import { Tooltip } from "react-native-paper";
 
-const Accordion = ({ questions,answers }) => {
+const Accordion = ({ questions, answers }) => {
   const [opened, setOpened] = useState(false);
-
+  const [tooltip,  setTooltip] = useState("")
   function toggleAccordion() {
     LayoutAnimation.configureNext({
       duration: 300,
@@ -14,8 +15,36 @@ const Accordion = ({ questions,answers }) => {
     setOpened(!opened);
   }
 
+  const ReturnTexts = () => {
+    const regex = /\b[A-Za-záéíóú]+\s+\d+:\d+\b/g;
+    const versiculos = answers.match(regex);
+    if(versiculos !== null) {
+      return (
+        <>
+          {versiculos.map((versiculo, index) => (
+            <>
+              <Tooltip title="Click para ver" key={index}>
+                <Text style={[styles.details, styles.tooltip]}>{versiculo}</Text>
+              </Tooltip>
+            </>
+          ))}
+        </>
+      )
+
+    }
+  }
+
+  const ReturnAnswer = () => {
+    return (
+      <>
+        <Text style={styles.details}>{answers}</Text>
+      </>
+    );
+  };
+
+
   useEffect(() => {
-    // Código adicional si es necesario
+   
   }, [opened]);
 
   return (
@@ -29,7 +58,10 @@ const Accordion = ({ questions,answers }) => {
 
       {opened && (
         <View style={styles.content}>
-          <Text style={styles.details}>{answers}</Text>
+           <ReturnAnswer/>
+            <View style= {styles.containerTooltip}>
+            <ReturnTexts/>
+            </View>
         </View>
       )}
     </View>
@@ -57,9 +89,27 @@ const styles = StyleSheet.create({
   },
   details: {
     fontFamily: "merri",
-    lineHeight: 29,
+    lineHeight: 33,
     fontSize: 18,
+    textAlign:"left",
   },
+  tooltip: {
+    backgroundColor: "#333333",
+    margin: 2,
+    width: 130,
+    padding: 6,
+    borderRadius: 90,
+    color: "white",
+    textAlign: "center",
+    fontSize: 10,
+  }, 
+  containerTooltip: {
+    display: "flex",
+    flexDirection: "row",
+    flexWrap: "wrap",
+    marginTop: 20,
+    gap: 2
+  }
 });
 
 export default Accordion;

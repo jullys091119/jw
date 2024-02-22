@@ -35,8 +35,8 @@ const styles = StyleSheet.create({
   title: {
     fontFamily: "merri",
     fontSize: 26,
-    marginTop: 20,
-    marginLeft: 13,
+    marginTop: 50,
+    textAlign: "center"
   },
 });
 

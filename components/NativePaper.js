@@ -76,6 +76,7 @@ const LoadIicon = () => {
     </Button>
   );
 };
+
 const CardSettingPublication = ({ titulo, imagen, preguntas, respuestas }) => {
   const navigation = useNavigation();
   return (
@@ -100,13 +101,14 @@ const SearchContent = () => {
       </Card.Content>
       <Card style={styles.search}>
         <View style={{display:"flex", flexDirection:"row"}}>
-          <MaterialCommunityIcons name="file-search-outline" size={30} color="gray"/>
+          <MaterialCommunityIcons name="file-search-outline" size={30} color="red"/>
           <MaterialCommunityIcons name="bell-badge-outline" size={30} color="red"/>
         </View>
       </Card>
     </Card>
   )
 };
+
 
 
 const styles = StyleSheet.create({
