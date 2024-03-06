@@ -1,13 +1,15 @@
-import React, {useEffect} from 'react';
+import React, { useEffect } from 'react';
 import Stacks from './navigation/Stack';
 import { PaperProvider } from 'react-native-paper';
-import { AppProvider } from './context/context';
+import { ProviderModeBlack } from './context/context';
+import { ProviderQuestions } from './context/questionsProvider';
+
 import * as Font from 'expo-font';
 
 const App = () => {
   useEffect(() => {
-    const loadFonts = async () => {
-      await Font.loadAsync({
+    const loadFonts = () => {
+      return Font.loadAsync({
         'righteous': require('./assets/fonts/Righteous-Regular.ttf'),
         'poiret': require('./assets/fonts/PoiretOne-Regular.ttf'),
         'merri': require('./assets/fonts/MerriweatherSans-VariableFont_wght.ttf'),
@@ -16,12 +18,15 @@ const App = () => {
 
     loadFonts();
   }, []);
+
   return (
-  <AppProvider>
-    <PaperProvider>
-      <Stacks/>
-    </PaperProvider>
-  </AppProvider>
+    <ProviderModeBlack>
+      <ProviderQuestions>
+        <PaperProvider>
+          <Stacks/>
+        </PaperProvider>
+      </ProviderQuestions>
+    </ProviderModeBlack>
   );
 };
 

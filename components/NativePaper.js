@@ -4,8 +4,7 @@ import { StyleSheet, Text, View } from "react-native";
 import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
 import { useNavigation } from "@react-navigation/native";
 import { modeBlackContext } from "../context/context";
-
-
+import { settingQuestions } from "../context/questionsProvider";
 
 const Icon = ({ color }) => (
   <View>
@@ -77,19 +76,32 @@ const LoadIicon = () => {
   );
 };
 
-const CardSettingPublication = ({ titulo, imagen, preguntas, respuestas }) => {
+const CardSettingPublication = ({ id, titulo, imagen,objPearls }) => {
+  const {questions} = useContext(settingQuestions)
   const navigation = useNavigation();
   return (
-    <Card
-      mode="elevated"
-      style={styles.card}
-      onPress={() => {
-        navigation.navigate("Questions", { pregunta: preguntas, respuestas: respuestas });
-      }}
-    >
-      <Card.Cover source={{ uri: imagen }} style={styles.img} />
-      <Card.Title title={titulo} subtitle="Card Subtitle" titleStyle={styles.titleCard} subtitleStyle={styles.subtitle} />
-    </Card>
+    <>
+      <Card
+        key={id}
+        mode="elevated"
+        style={styles.card}
+        onPress={() => {
+          navigation.navigate("Questions", { id: id, questions: questions});
+        }}
+        
+      >
+        <Card.Cover source={{ uri: 'http://192.168.1.2/' + imagen }} style={styles.img} />
+        <Card.Title title={titulo} subtitle="Card Subtitle" titleStyle={styles.titleCard} subtitleStyle={styles.subtitle} />
+      </Card>
+      {/* <Card
+        key={3333}
+        mode="elevated"
+        style={styles.card}
+      >
+        <Card.Cover source={{ uri: 'http://192.168.1.2/' + objPearls[0].img }} style={styles.img} />
+        <Card.Title title={objPearls[0].title} subtitle="Card Subtitle" titleStyle={styles.titleCard} subtitleStyle={styles.subtitle} />
+      </Card> */}
+    </>
   );
 };
 

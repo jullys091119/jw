@@ -1,32 +1,36 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import Accordion from "../components/Acordion";
 import { View, Text, SafeAreaView, StyleSheet, ScrollView } from "react-native";
-
-
 const Questions = ({ route }) => {
-  const { pregunta,respuestas } = route.params || {}; // Asegúrate de que route.params sea un objeto
+  const { id, questions} = route.params || {};
 
-  useEffect(() => {
-  }, [pregunta]);
 
-  return (
-    <SafeAreaView style={{ flex: 1, padding: 20 }}>
-      <ScrollView>
-        <Text style={styles.title}>Preguntas frecuentes</Text>
-        <View style={styles.container}>
-          {pregunta &&
-            pregunta.map((item, index) => (
+
+  
+return (
+  <SafeAreaView style={{ flex: 1, padding: 20 }}>
+    <ScrollView>
+      <Text style={styles.title}>Preguntas frecuentes</Text>
+      <View style={styles.container}>
+        {
+          // Encontrar el objeto de pregunta específico por el id
+          questions.find(item => item.id === id)?.questions?.map((question, index) => {
+            return(
               <Accordion
                 key={index}
-                questions={item}
-                answers={respuestas[index]}
+                questions={question.pregunta}
+                answers={question.respuesta}
               />
-            ))}
-        </View>
-      </ScrollView>
-    </SafeAreaView>
-  );
+
+            )
+          })
+        }
+      </View>
+    </ScrollView>
+  </SafeAreaView>
+);
 };
+
 
 const styles = StyleSheet.create({
   container: {
