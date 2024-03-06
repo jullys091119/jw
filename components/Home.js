@@ -8,25 +8,40 @@ import {
   FlatList,
 } from "react-native";
 import { modeBlackContext } from "../context/context";
-import { readData } from "../firebase";
+import { readData, readChristianMinistry } from "../firebase";
 import { CardSettingPublication, SearchContent } from "./NativePaper";
 import { IconSunOn, LogoJw } from "../components/NativePaper";
+import { settingQuestions } from "../context/questionsProvider";
 
 const Home = () => {
   const { modeColor, getValueModeColor } = useContext(modeBlackContext);
-  const [data, setData] = useState([]);
-
+  const { setQuestions} = useContext(settingQuestions); 
+  
+  const [data, setData] = useState({});
+  const [pearls, setPearls] = useState()
+  
   const gettingPublications = async () => {
-    const publications = await readData(); // Obtener datos de Firebase
-    const formattedData = publications.map((publication) => ({
-      titulo: publication.titulo,
-      imagen: publication.imagen,
-      preguntas: publication.questions, // Array de preguntas de cada publicación
-      respuestas: publication.answers
+    // const pearl =  await readChristianMinistry()
+    const publications  = await readData()
+   
+    const formattedData = publications.map((publication,index) => ({
+      id: publication.id,
+      title: publication.title,
+      questions: JSON.parse(publication.questions),//fallaste aqui agusado
+      img: publication.img[index].attributes.uri.url,
     }));
+    
+    setQuestions(formattedData)
+    //   // const formatted = pearl.map((el)=> ({
+    //   //     img: el.img,
+    //   //     title: el.title
+    //   // }))
+  
+    // // setPearls(formatted)
     setData(formattedData);
-  };
-
+   
+    
+  };                                                 
   const SetCardPublication = () => (
     <SafeAreaView style={styles.container}>
       <FlatList
@@ -34,22 +49,21 @@ const Home = () => {
         showsVerticalScrollIndicator={false}
         showsHorizontalScrollIndicator={false}
         data={data}
-        renderItem={({ item }) => (
+        renderItem={({ item,index }) => (
           <CardSettingPublication
-            titulo={item.titulo}
-            imagen={item.imagen}
-            preguntas={item.preguntas} // Pasar el array de preguntas al componente CardSettingPublication
-            respuestas={item.respuestas}
+            id={item.id}
+            titulo={item.title}
+            imagen={item.img}
+            // objPearls={pearls}
           />
         )}
-        keyExtractor={(item) => item.titulo}
       />
     </SafeAreaView>
   );
 
   useEffect(() => {
     getValueModeColor();
-    gettingPublications();
+    gettingPublications(); 
   }, []);
 
   return (

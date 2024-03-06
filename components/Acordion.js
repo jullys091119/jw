@@ -4,6 +4,7 @@ import { View, StyleSheet, TouchableWithoutFeedback, Text, LayoutAnimation, Link
 import { Tooltip } from "react-native-paper";
 
 const Accordion = ({ questions, answers }) => {
+
   const [opened, setOpened] = useState(false);
   const [tooltip,  setTooltip] = useState("")
   function toggleAccordion() {

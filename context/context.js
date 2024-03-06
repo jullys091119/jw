@@ -3,7 +3,7 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 
 const modeBlackContext = createContext();
 
-const AppProvider = ({ children }) => {
+const ProviderModeBlack = ({ children }) => {
   const [modeColor, settingModeColor] = useState("")
 
 
@@ -37,4 +37,4 @@ const AppProvider = ({ children }) => {
 };
 
 
-export { AppProvider, modeBlackContext }
+export { ProviderModeBlack, modeBlackContext }
