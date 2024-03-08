@@ -90,17 +90,17 @@ const CardSettingPublication = ({ id, titulo, imagen,objPearls }) => {
         }}
         
       >
-        <Card.Cover source={{ uri: 'http://192.168.1.2/' + imagen }} style={styles.img} />
+        <Card.Cover source={{ uri: 'https://elalfaylaomega.com/' + imagen }} style={styles.img} />
         <Card.Title title={titulo} subtitle="Card Subtitle" titleStyle={styles.titleCard} subtitleStyle={styles.subtitle} />
       </Card>
-      {/* <Card
-        key={3333}
+      <Card
+        key={objPearls[0].id}
         mode="elevated"
         style={styles.card}
       >
-        <Card.Cover source={{ uri: 'http://192.168.1.2/' + objPearls[0].img }} style={styles.img} />
+        <Card.Cover source={{ uri: 'https://elalfaylaomega.com/' + objPearls[0].img }} style={styles.img} />
         <Card.Title title={objPearls[0].title} subtitle="Card Subtitle" titleStyle={styles.titleCard} subtitleStyle={styles.subtitle} />
-      </Card> */}
+      </Card>
     </>
   );
 };
