@@ -13,6 +13,8 @@ import { CardSettingPublication, SearchContent } from "./NativePaper";
 import { IconSunOn, LogoJw } from "../components/NativePaper";
 import { settingQuestions } from "../context/questionsProvider";
 
+
+
 const Home = () => {
   const { modeColor, getValueModeColor } = useContext(modeBlackContext);
   const { setQuestions} = useContext(settingQuestions); 
@@ -21,25 +23,23 @@ const Home = () => {
   const [pearls, setPearls] = useState()
   
   const gettingPublications = async () => {
-    // const pearl =  await readChristianMinistry()
+    const pearl =  await readChristianMinistry()
     const publications  = await readData()
-   
     const formattedData = publications.map((publication,index) => ({
       id: publication.id,
       title: publication.title,
       questions: JSON.parse(publication.questions),//fallaste aqui agusado
       img: publication.img[index].attributes.uri.url,
     }));
-    
     setQuestions(formattedData)
-    //   // const formatted = pearl.map((el)=> ({
-    //   //     img: el.img,
-    //   //     title: el.title
-    //   // }))
-  
-    // // setPearls(formatted)
+    const formatted = pearl.map((el)=> ({
+    img: el.img,
+    title: el.title
+    }))
+     
+
+    setPearls(formatted)
     setData(formattedData);
-   
     
   };                                                 
   const SetCardPublication = () => (
@@ -54,7 +54,7 @@ const Home = () => {
             id={item.id}
             titulo={item.title}
             imagen={item.img}
-            // objPearls={pearls}
+            objPearls={pearls}
           />
         )}
       />
