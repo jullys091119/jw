@@ -97,7 +97,7 @@ const LoadIicon = () => {
     <Button
       icon={Icon}
       mode="contained"
-      onPress={() => navigation.push("MyTabs")}
+      onPress={() => navigation.push("MyDrawer")}
       style={styles.btnLoad}
     >
       <Text style={styles.txtStart}>Comezar...</Text>

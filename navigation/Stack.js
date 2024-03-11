@@ -116,7 +116,7 @@ const Stacks = () => {
   return (
     <NavigationContainer>
       <Stack.Navigator
-        initialRouteName="MyDrawer"
+        initialRouteName="Load"
         screenOptions={{
           headerStyle: {
             backgroundColor: '#800080',
@@ -127,7 +127,6 @@ const Stacks = () => {
           },
         }}
       >
-        <Stack.Screen name="MyDrawer" component={MyDrawer} options={{ headerShown: false }} />
         <Stack.Screen
           name="Load"
           component={Load}
@@ -138,6 +137,7 @@ const Stacks = () => {
             headerShown: false,
           }}
         />
+        <Stack.Screen name="MyDrawer" component={MyDrawer} options={{ headerShown: false }} />
         <Stack.Screen
           name="Questions"
           component={Questions}
