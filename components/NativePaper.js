@@ -22,6 +22,35 @@ const IconChevronDown = ({ color, opened, id }) => {
   );
 };
 
+const IconHeart = () => {
+  return (
+    <>
+      <View>
+        <MaterialCommunityIcons name={"heart-multiple-outline"} size={25} color="purple" />
+      </View>
+    </>
+  );
+};
+
+const IconWatchTower = () => {
+  return (
+    <>
+      <View>
+        <MaterialCommunityIcons name={"office-building-outline"} size={25} color="purple" />
+      </View>
+    </>
+  );
+};
+
+const IconHome = () => {
+  return (
+    <>
+      <View>
+        <MaterialCommunityIcons name={"home-import-outline"} size={25} color="purple" />
+      </View>
+    </>
+  );
+};
 
 const LogoJw = () => (
   <Avatar.Image size={30} source={require('../assets/jw.png')} />
@@ -76,7 +105,8 @@ const LoadIicon = () => {
   );
 };
 
-const CardSettingPublication = ({ id, titulo, imagen,objPearls }) => {
+
+const CardSettingPublication = ({ id, titulo, imagen}) => {
   const {questions} = useContext(settingQuestions)
   const navigation = useNavigation();
   return (
@@ -93,14 +123,7 @@ const CardSettingPublication = ({ id, titulo, imagen,objPearls }) => {
         <Card.Cover source={{ uri: 'https://elalfaylaomega.com/' + imagen }} style={styles.img} />
         <Card.Title title={titulo} subtitle="Card Subtitle" titleStyle={styles.titleCard} subtitleStyle={styles.subtitle} />
       </Card>
-      <Card
-        key={objPearls[0].id}
-        mode="elevated"
-        style={styles.card}
-      >
-        <Card.Cover source={{ uri: 'https://elalfaylaomega.com/' + objPearls[0].img }} style={styles.img} />
-        <Card.Title title={objPearls[0].title} subtitle="Card Subtitle" titleStyle={styles.titleCard} subtitleStyle={styles.subtitle} />
-      </Card>
+     
     </>
   );
 };
@@ -195,8 +218,11 @@ const styles = StyleSheet.create({
 export { 
 LoadIicon,
 IconSunOn,
+IconHeart,
+IconWatchTower,
+IconHome,
 CardSettingPublication,
 SearchContent,
 LogoJw,
-IconChevronDown
+IconChevronDown,
 };
