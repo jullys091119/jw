@@ -20,10 +20,8 @@ const Home = () => {
   const { setQuestions} = useContext(settingQuestions); 
   
   const [data, setData] = useState({});
-  const [pearls, setPearls] = useState()
   
   const gettingPublications = async () => {
-    const pearl =  await readChristianMinistry()
     const publications  = await readData()
     const formattedData = publications.map((publication,index) => ({
       id: publication.id,
@@ -32,13 +30,6 @@ const Home = () => {
       img: publication.img[index].attributes.uri.url,
     }));
     setQuestions(formattedData)
-    const formatted = pearl.map((el)=> ({
-    img: el.img,
-    title: el.title
-    }))
-     
-
-    setPearls(formatted)
     setData(formattedData);
     
   };                                                 
@@ -54,7 +45,6 @@ const Home = () => {
             id={item.id}
             titulo={item.title}
             imagen={item.img}
-            objPearls={pearls}
           />
         )}
       />

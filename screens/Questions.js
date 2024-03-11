@@ -3,10 +3,6 @@ import Accordion from "../components/Acordion";
 import { View, Text, SafeAreaView, StyleSheet, ScrollView } from "react-native";
 const Questions = ({ route }) => {
   const { id, questions} = route.params || {};
-
-
-
-  
 return (
   <SafeAreaView style={{ flex: 1, padding: 20 }}>
     <ScrollView>
@@ -15,6 +11,7 @@ return (
         {
           // Encontrar el objeto de pregunta específico por el id
           questions.find(item => item.id === id)?.questions?.map((question, index) => {
+            console.log(question, "questions acordeon")
             return(
               <Accordion
                 key={index}

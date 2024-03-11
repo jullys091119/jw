@@ -8,7 +8,7 @@ import * as Font from 'expo-font';
 
 const App = () => {
   useEffect(() => {
-    const loadFonts = () => {
+    const loadFonts = async () => {
       return Font.loadAsync({
         'righteous': require('./assets/fonts/Righteous-Regular.ttf'),
         'poiret': require('./assets/fonts/PoiretOne-Regular.ttf'),
