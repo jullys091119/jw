@@ -90,8 +90,8 @@ const styles = StyleSheet.create({
   },
   details: {
     fontFamily: "merri",
-    lineHeight: 33,
-    fontSize: 18,
+    lineHeight: 50,
+    fontSize: 22,
     textAlign:"left",
   },
   tooltip: {

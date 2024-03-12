@@ -6,6 +6,7 @@ import { useNavigation } from "@react-navigation/native";
 import { modeBlackContext } from "../context/context";
 import { settingQuestions } from "../context/questionsProvider";
 
+
 const Icon = ({ color }) => (
   <View>
     <MaterialCommunityIcons name="arrow-right-thin" size={30} color="#333333" />
@@ -92,13 +93,19 @@ const IconSunOn = ({ color }) => {
 };
 
 
+
+const AvatarBible = () => (
+  <Avatar.Image size={50} source={require('../img/david.jpg')}  style={styles.avatarBible}/>
+);
+
+
 const LoadIicon = () => {
   const navigation = useNavigation();
   return (
     <Button
       icon={Icon}
       mode="contained"
-      onPress={() => navigation.push("Home")}
+      onPress={() => navigation.push("MyTabs")}
       style={styles.btnLoad}
     >
       <Text style={styles.txtStart}>Comezar...</Text>
@@ -211,6 +218,11 @@ const styles = StyleSheet.create({
   },
   subtitle: {
     fontSize: 15
+  },
+  avatarBible: {
+    position: "absolute",
+    right: 70,
+    top: 14
   }
 
 
@@ -226,4 +238,5 @@ CardSettingPublication,
 SearchContent,
 LogoJw,
 IconChevronDown,
+AvatarBible
 };

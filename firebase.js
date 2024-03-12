@@ -24,25 +24,25 @@ const readData = async () => {
 
 }
 
+// const content = {
+//   id: el.id,
+//   title: el.attributes.title,
+//   topic1: el.attributes.field_hidden_pearls_topic_1,
+//   img: data.data.included[0].attributes.uri.url      
+// }
+// obj.push(content)
 const readChristianMinistry = async () => {
   return await axios.get(`${API_URL}/jwPersonal/jsonapi/node/vida_y_ministerio_cristianos?include=field_field_topic_treasure_img`, {
     "headers": {'Content-Type': 'application/json'}
   }).then((data)=> {
-    let obj = []
-    let questions = []
-    data.data.data.forEach((el,index)=> {
-      const content = {
-        id: el.id,
-        title: el.attributes.title,
-        questions: el.attributes.field_search_pearls_question_1,
-        img: data.data.included[0].attributes.uri.url      
-      }
-      obj.push(content)
-    })
-    return obj
+    let obj;
+    data.data.data.forEach((data)=>  {
+    obj = JSON.parse(data.attributes.field_findig_pearls);
+  })
+  return obj
   }).catch(function (error) {
       console.log(error.config);
-    });
+  });
   
 }
 
@@ -59,6 +59,8 @@ const watchTowerTopics = async () => {
      console.log(err)
    })
 }
+
+
 
 
 

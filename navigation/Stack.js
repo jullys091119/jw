@@ -10,6 +10,7 @@ import Home from "../components/Home";
 import Load from "../components/Load";
 import Texts from "../components/Texts";
 import Questions from "../screens/Questions";
+import Ministry from '../screens/Ministry';
 import WatchTower from '../screens/WatchTower';
 import { IconHeart, IconWatchTower, IconHome } from '../components/NativePaper';
 
@@ -21,7 +22,7 @@ function CustomDrawerContent(props) {
   return (
     <View style={styles.drawerContainer}>
       <DrawerItemList {...props} />
-      <DrawerItem label=" " onPress={() => alert('Link to help')} icon={() => (
+      <DrawerItem label=" " onPress={() => props.navigation.navigate("Ministry")} icon={() => (
         <View style={{ flexDirection: 'row-reverse', alignItems: 'center' }}>
           <Text style={{ marginRight: 0, fontSize: 20, marginLeft: 10 }}>Ministerio</Text>
           <IconHeart />
@@ -102,12 +103,13 @@ function MyTabs() {
 const Stacks = () => {
   return (
     <NavigationContainer>
-      <Stack.Navigator initialRouteName="MyTabs">
+      <Stack.Navigator initialRouteName="Load">
         <Stack.Screen name="Load" component={Load} options={{ title: "Load", headerShown: false }} />
         <Stack.Screen name="MyTabs" component={MyTabs} options={{ headerShown: false }} />
         <Stack.Screen name="Questions" component={Questions} options={{ title: "Questions",headerShown: false }} />
         <Stack.Screen name="WatchTower" component={WatchTower} options={{ title: "WatchTower", headerShown: false }} />
         <Stack.Screen name="Home" component={Home} options={{ title: "Home", headerShown: false }} />
+        <Stack.Screen name="Ministry" component={Ministry} options={{ title: "Ministry", headerShown: false }} />
       </Stack.Navigator>
     </NavigationContainer>
   );
