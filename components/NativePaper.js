@@ -91,13 +91,14 @@ const IconSunOn = ({ color }) => {
   );
 };
 
+
 const LoadIicon = () => {
   const navigation = useNavigation();
   return (
     <Button
       icon={Icon}
       mode="contained"
-      onPress={() => navigation.push("MyDrawer")}
+      onPress={() => navigation.push("Home")}
       style={styles.btnLoad}
     >
       <Text style={styles.txtStart}>Comezar...</Text>
@@ -190,7 +191,7 @@ const styles = StyleSheet.create({
     fontSize: 23,
     maxWidth: 150,
     color:"white",
-    fontFamily: "merri"
+    // fontFamily: "merri"
   },
   search: {
     height:60,
@@ -206,7 +207,7 @@ const styles = StyleSheet.create({
   },
   titleCard: {
     fontSize: 19,
-    fontFamily: "merri"
+    // fontFamily: "merri"
   },
   subtitle: {
     fontSize: 15
