@@ -2,6 +2,7 @@
 
 import axios from "axios";
 import {API_URL} from '@env'
+import { DrawerContentScrollView } from "@react-navigation/drawer";
  
 const readData = async () => {
   return await axios.get(`${API_URL}/jwPersonal/jsonapi/node/publicaciones?include=field_publicaciones_img`, {
@@ -27,8 +28,7 @@ const readData = async () => {
 // const content = {
 //   id: el.id,
 //   title: el.attributes.title,
-//   topic1: el.attributes.field_hidden_pearls_topic_1,
-//   img: data.data.included[0].attributes.uri.url      
+//    
 // }
 // obj.push(content)
 const readChristianMinistry = async () => {
@@ -36,10 +36,14 @@ const readChristianMinistry = async () => {
     "headers": {'Content-Type': 'application/json'}
   }).then((data)=> {
     let obj;
+    let topic1;
+    let img = data.data.included[0].attributes.uri.url       
     data.data.data.forEach((data)=>  {
-    obj = JSON.parse(data.attributes.field_findig_pearls);
+    obj = JSON.parse(data.attributes.field_findig_pearls)
+    topic1 = JSON.parse(data.attributes.field_hidden_pearls_topic_1)
   })
-  return obj
+ 
+  return [obj,topic1,img]
   }).catch(function (error) {
       console.log(error.config);
   });
