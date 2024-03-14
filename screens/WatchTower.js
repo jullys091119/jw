@@ -28,6 +28,7 @@ const WatchTower =  () => {
               <Accordion
                 questions={question.pregunta}
                 answers={question.respuesta}
+                key={index}
               />
             </ScrollView>
           </View>
