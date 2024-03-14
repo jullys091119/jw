@@ -2,7 +2,7 @@
 
 import axios from "axios";
 import {API_URL} from '@env'
-import { DrawerContentScrollView } from "@react-navigation/drawer";
+
  
 const readData = async () => {
   return await axios.get(`${API_URL}/jwPersonal/jsonapi/node/publicaciones?include=field_publicaciones_img`, {
@@ -25,12 +25,6 @@ const readData = async () => {
 
 }
 
-// const content = {
-//   id: el.id,
-//   title: el.attributes.title,
-//    
-// }
-// obj.push(content)
 const readChristianMinistry = async () => {
   return await axios.get(`${API_URL}/jwPersonal/jsonapi/node/vida_y_ministerio_cristianos?include=field_field_topic_treasure_img`, {
     "headers": {'Content-Type': 'application/json'}
@@ -65,7 +59,33 @@ const watchTowerTopics = async () => {
 }
 
 
+const studyBook = async () => {
+  return await axios.get(`${API_URL}/jwPersonal/jsonapi/node/estudio_del_libro?include=field_libro_img_portada` , {
+    "headers": {'Content-Type': 'application/json'}
+  }).then((data)=> {
+    const dataBook = data.data.data
+    let obj = []
+    dataBook.forEach((el)=> {
+      const book = {
+        title: el.attributes.title,
+        titleChapter: el.attributes.field__libro_titulo,
+        chapter: el.attributes.field_libro_capitulo,
+        subtitle: el.attributes.field_libro_subtitulo,
+        reference: el.attributes.field_libro_referencia,
+        img: data.data.included[0].attributes.uri.url,
+        questions: JSON.parse(el.attributes.field_libro_preg_res)
+      }
+      obj.push(book)
+    })
+   return obj
+  }).catch((error)=> {
+    console.log(error)
+  })
+}
 
 
 
-export { readData, readChristianMinistry, watchTowerTopics }
+
+
+
+export { readData, readChristianMinistry, watchTowerTopics, studyBook }

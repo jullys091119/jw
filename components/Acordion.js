@@ -4,7 +4,6 @@ import { View, StyleSheet, TouchableWithoutFeedback, Text, LayoutAnimation, Link
 import { Tooltip } from "react-native-paper";
 
 const Accordion = ({ questions, answers }) => {
-
   const [opened, setOpened] = useState(false);
   const [tooltip,  setTooltip] = useState("")
   function toggleAccordion() {
@@ -23,11 +22,9 @@ const Accordion = ({ questions, answers }) => {
       return (
         <>
           {versiculos.map((versiculo, index) => (
-            <>
-              <Tooltip title="Click para ver" key={index}>
-                <Text style={[styles.details, styles.tooltip]}>{versiculo}</Text>
-              </Tooltip>
-            </>
+            <Tooltip title="Click para ver" key={index}>
+              <Text style={[styles.details, styles.tooltip]}>{versiculo}</Text>
+            </Tooltip>
           ))}
         </>
       )
@@ -42,11 +39,6 @@ const Accordion = ({ questions, answers }) => {
       </>
     );
   };
-
-
-  useEffect(() => {
-   
-  }, [opened]);
 
   return (
     <View style={styles.container}>
@@ -73,7 +65,7 @@ const styles = StyleSheet.create({
   container: {
     margin: 10,
     padding: 15,
-    backgroundColor: 'white',
+    backgroundColor: '#333333',
     borderRadius: 6,
   },
   header: {
@@ -82,8 +74,9 @@ const styles = StyleSheet.create({
   },
   title: {
     fontWeight: "600",
-    fontFamily: "righteous",
+    fontFamily: "merri",
     fontSize: 15,
+    color:"white"
   },
   content: {
     marginTop: 8,
@@ -91,8 +84,9 @@ const styles = StyleSheet.create({
   details: {
     fontFamily: "merri",
     lineHeight: 50,
-    fontSize: 22,
+    fontSize: 18,
     textAlign:"left",
+    color: "white"
   },
   tooltip: {
     backgroundColor: "#333333",
