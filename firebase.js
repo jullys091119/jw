@@ -26,18 +26,21 @@ const readData = async () => {
 }
 
 const readChristianMinistry = async () => {
+  let obj = []
   return await axios.get(`${API_URL}/jwPersonal/jsonapi/node/vida_y_ministerio_cristianos?include=field_field_topic_treasure_img`, {
     "headers": {'Content-Type': 'application/json'}
-  }).then((data)=> {
-    let obj;
-    let topic1;
-    let img = data.data.included[0].attributes.uri.url       
-    data.data.data.forEach((data)=>  {
-    obj = JSON.parse(data.attributes.field_findig_pearls)
-    topic1 = JSON.parse(data.attributes.field_hidden_pearls_topic_1)
+  }).then((data)=> {   
+    const value = data.data.included[0].attributes.uri.url
+    data.data.data.forEach((data,index)=>  {
+    const  ministry = {
+      topic1: data.attributes.field_hidden_pearls_topic_1,
+      pearls: data.attributes.field_findig_pearls,
+      img: value
+    }
+    obj.push(ministry)
   })
  
-  return [obj,topic1,img]
+  return obj
   }).catch(function (error) {
       console.log(error.config);
   });
