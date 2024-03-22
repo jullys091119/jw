@@ -63,20 +63,22 @@ const Accordion = ({ questions, answers }) => {
 
 const styles = StyleSheet.create({
   container: {
-    margin: 10,
-    padding: 15,
-    backgroundColor: '#333333',
+    marginHorizontal: 10,
+    marginVertical: 20,
     borderRadius: 6,
   },
+
   header: {
     flexDirection: 'row',
     justifyContent: 'space-between',
   },
+  
   title: {
     fontWeight: "600",
     fontFamily: "merri",
     fontSize: 15,
-    color:"white"
+    color:"#333333",
+    maxWidth: 220
   },
   content: {
     marginTop: 8,
@@ -86,15 +88,14 @@ const styles = StyleSheet.create({
     lineHeight: 50,
     fontSize: 18,
     textAlign:"left",
-    color: "white"
+    color: "#333333"
   },
   tooltip: {
-    backgroundColor: "#333333",
     margin: 2,
     width: 130,
     padding: 6,
     borderRadius: 90,
-    color: "white",
+    color: "#333333",
     textAlign: "center",
     fontSize: 10,
   }, 

@@ -16,6 +16,7 @@ const Ministry = () => {
 
   const [image, setImage] = useState('')
 
+  const  [imageVisible, setImageVisible] = useState(false)
 
   const [showBooksquestions, setShowBooksQuestions] = useState(false);
   const [book, setBook] = useState([])
@@ -29,8 +30,6 @@ const Ministry = () => {
       setDataMinistry(JSON.parse(ministry[0].pearls))
       setTopic1(JSON.parse(ministry[0].topic1))
       setImage(ministry[0].img)
-
-
       const bookData = await studyBook();
       setBook(bookData)
       const value3 = bookData.map((callback) => { return callback.questions })
@@ -50,6 +49,11 @@ const Ministry = () => {
       );
     });
   };
+
+  const hiddePictureBible = () => {
+    setShowMinistryTexts(!showMinistryTexts)
+    setImageVisible(!imageVisible)
+  }
 
   const renderMinistryTexts = (dataMinistry) => {
     return dataMinistry.map((text, index) => {
@@ -78,7 +82,7 @@ const Ministry = () => {
     return book.map((data, index) => {
       return (
         <TouchableOpacity key={index} onPress={() => { setShowBooksQuestions(!showBooksquestions) }}>
-          <View style={{ marginVertical: 40 }}>
+          <View style={{ marginVertical: 20 }}>
             <View style={styles.containerDataBook}>
               <View>
                 <Image source={{ uri: `${API_URL}${data.img}` }} width={100} height={130} style={styles.book} />
@@ -101,13 +105,14 @@ const Ministry = () => {
       <View style={styles.containerTitle}>
         <Text style={styles.title}>Perlas Escondidas</Text>
       </View>
-      <ScrollView style={{ marginHorizontal: 0 }}>
+      <ScrollView style={{ marginHorizontal: 0, }}>
         {image && <Image source={{ uri: `${API_URL}${image}` }} width={340} height={200} style={{ alignSelf: "center", marginVertical: 10, borderRadius: 8 }} />}
         {renderQuestions(topic1)}
-        <TouchableOpacity onPress={() => setShowMinistryTexts(!showMinistryTexts)}>
+        <TouchableOpacity onPress={() => hiddePictureBible()} style={styles.containerHiddenPearls}>
           <Text style={styles.foundPearlsTitle}>
             ¿Qué perlas espirituales has encontrado en tu lectura bíblica de esta semana?
           </Text>
+          {!imageVisible && <Image source={require('../img/biblia.jpg')} style={styles.pictureBible}/>}
         </TouchableOpacity>
         {showMinistryTexts && renderMinistryTexts(dataMinistry)}
         {renderStudyBook(book)}
@@ -126,49 +131,66 @@ const styles = StyleSheet.create({
     marginTop: 40,
     marginHorizontal: 10
   },
+  containerHiddenPearls: {
+   display: "flex",
+   flexDirection: "row",
+   marginVertical: 20
+  },
   title: {
     fontSize: 25,
     textAlign: "center",
     paddingVertical: 18
   },
   foundPearlsTitle: {
-    fontSize: 18,
+    fontSize: 15,
     marginHorizontal: 10,
     marginVertical: 20,
-    maxWidth: 300,
+    maxWidth: 200,
     fontFamily: "merri"
   },
+
   book: {
     marginHorizontal: 10
   },
+
   titleBook: {
     fontSize: 20,
     marginHorizontal: 10,
     fontFamily: "merri",
     marginVertical: 15
   },
+
   containerDataBook: {
     display: "flex",
-    flexDirection: "row"
+    flexDirection: "row",
   },
+
   dataBookInfo: {
     maxWidth: 230
   },
+
   chapter: {
-    fontWeight: "900",
-    marginVertical: 10
+    fontFamily: "merri"
   },
+
   titleChapter: {
-    fontWeight: "900",
-    textAlign: "left"
+    textAlign: "left",
+    fontFamily: "merri"
   },
+
   subtitle: {
-    fontWeight: "900",
+    fontFamily: "merri"
   },
+
   reference: {
     marginVertical: 6,
     fontSize: 15,
-    fontWeight: "900"
+    fontFamily: "merri"
+  }, 
+
+  pictureBible: {
+   width: 100,
+   height: 130
   }
 
 });

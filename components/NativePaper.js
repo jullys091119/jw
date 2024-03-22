@@ -17,7 +17,7 @@ const IconChevronDown = ({ color, opened, id }) => {
   return (
     <>
       <View>
-        <MaterialCommunityIcons name={opened ? "chevron-up" : "chevron-down"} size={30} color="white" />
+        <MaterialCommunityIcons name={opened ? "chevron-up" : "chevron-down"} size={30} color="#333333" />
       </View>
     </>
   );
