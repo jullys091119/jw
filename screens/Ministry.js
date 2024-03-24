@@ -41,7 +41,7 @@ const Ministry = () => {
   const renderQuestions = (data) => {
     return data.map((question, index) => {
       return (
-        <View style={styles.topic1}>
+        <View style={styles.topic1} key={index}>
           <Accordion
             questions={question.pregunta}
             answers={question.respuesta}
