@@ -41,11 +41,13 @@ const Ministry = () => {
   const renderQuestions = (data) => {
     return data.map((question, index) => {
       return (
-        <Accordion
-          questions={question.pregunta}
-          answers={question.respuesta}
-          key={`pregunta-${index}`}
-        />
+        <View style={styles.topic1}>
+          <Accordion
+            questions={question.pregunta}
+            answers={question.respuesta}
+            key={`pregunta-${index}`}
+          />
+        </View>
       );
     });
   };
@@ -105,8 +107,8 @@ const Ministry = () => {
       <View style={styles.containerTitle}>
         <Text style={styles.title}>Perlas Escondidas</Text>
       </View>
-      <ScrollView style={{ marginHorizontal: 0, }}>
-        {image && <Image source={{ uri: `${API_URL}${image}` }} width={340} height={200} style={{ alignSelf: "center", marginVertical: 10, borderRadius: 8 }} />}
+      <ScrollView style={{ marginHorizontal: 0, backgroundColor: "#e6e6e6" }}>
+        {image && <Image source={{ uri: `${API_URL}${image}` }} width={340} height={190} style={{ alignSelf: "center", marginVertical: 10, borderRadius: 8 }} />}
         {renderQuestions(topic1)}
         <TouchableOpacity onPress={() => hiddePictureBible()} style={styles.containerHiddenPearls}>
           <Text style={styles.foundPearlsTitle}>
@@ -134,7 +136,18 @@ const styles = StyleSheet.create({
   containerHiddenPearls: {
    display: "flex",
    flexDirection: "row",
-   marginVertical: 20
+   marginVertical: 20,
+   backgroundColor: "white",
+   padding: 17,
+   marginHorizontal: 10,
+   borderRadius:9
+  },
+  topic1: {
+    backgroundColor: "white",
+    padding: 10,
+    marginHorizontal: 10,
+    borderRadius:9,
+    marginVertical: 12
   },
   title: {
     fontSize: 25,
@@ -149,10 +162,6 @@ const styles = StyleSheet.create({
     fontFamily: "merri"
   },
 
-  book: {
-    marginHorizontal: 10
-  },
-
   titleBook: {
     fontSize: 20,
     marginHorizontal: 10,
@@ -163,10 +172,15 @@ const styles = StyleSheet.create({
   containerDataBook: {
     display: "flex",
     flexDirection: "row",
+    backgroundColor: "white",
+    padding: 20,
+    marginHorizontal: 10,
+    borderRadius:9
   },
 
   dataBookInfo: {
-    maxWidth: 230
+    maxWidth: 200,
+    marginHorizontal: 10
   },
 
   chapter: {
@@ -189,8 +203,9 @@ const styles = StyleSheet.create({
   }, 
 
   pictureBible: {
-   width: 100,
-   height: 130
+   width: 70,
+   height: 100,
+   marginHorizontal: 10
   }
 
 });
