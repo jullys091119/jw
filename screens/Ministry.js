@@ -15,9 +15,7 @@ const Ministry = () => {
   const [topic1, setTopic1] = useState([])
 
   const [image, setImage] = useState('')
-
   const  [imageVisible, setImageVisible] = useState(false)
-
   const [showBooksquestions, setShowBooksQuestions] = useState(false);
   const [book, setBook] = useState([])
   const [questionsBook, setQuestionBook] = useState([])
@@ -25,15 +23,17 @@ const Ministry = () => {
   useEffect(() => {
     const fetchData = async () => {
       const data = await readChristianMinistry();
+      const bookData = await studyBook();
       const value = Object.values(data)
       const ministry = value.map((data) => { return data })
-      setDataMinistry(JSON.parse(ministry[0].pearls))
-      setTopic1(JSON.parse(ministry[0].topic1))
-      setImage(ministry[0].img)
-      const bookData = await studyBook();
-      setBook(bookData)
-      const value3 = bookData.map((callback) => { return callback.questions })
-      setQuestionBook(value3[0])
+      const lastIndex = bookData.length -1
+      ministry.map((img, index)=> {
+        setImage(img.img)
+        setDataMinistry(JSON.parse(ministry[index].pearls))
+        setTopic1(JSON.parse(ministry[index].topic1))
+        setBook([bookData[lastIndex]])
+        setQuestionBook(bookData[lastIndex].questions)
+      })
     };
     fetchData();
   }, []);

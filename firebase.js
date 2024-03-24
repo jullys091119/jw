@@ -3,7 +3,6 @@
 import axios from "axios";
 import {API_URL} from '@env'
 
- 
 const readData = async () => {
   return await axios.get(`${API_URL}/jwPersonal/jsonapi/node/publicaciones?include=field_publicaciones_img`, {
     "headers": { 'Content-Type': 'application/json' }
@@ -30,12 +29,12 @@ const readChristianMinistry = async () => {
   return await axios.get(`${API_URL}/jwPersonal/jsonapi/node/vida_y_ministerio_cristianos?include=field_field_topic_treasure_img`, {
     "headers": {'Content-Type': 'application/json'}
   }).then((data)=> {   
-    const value = data.data.included[0].attributes.uri.url
+    const value = data.data.included
     data.data.data.forEach((data,index)=>  {
     const  ministry = {
       topic1: data.attributes.field_hidden_pearls_topic_1,
       pearls: data.attributes.field_findig_pearls,
-      img: value
+      img: value[index].attributes.uri.url
     }
     obj.push(ministry)
   })
