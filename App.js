@@ -5,7 +5,6 @@ import { ProviderModeBlack } from './context/context';
 import { ProviderQuestions } from './context/questionsProvider';
 import * as Font from 'expo-font';
 
-
 const App = () => {
   const [appIsReady, setAppIsReady] = useState(false);
 
@@ -17,6 +16,7 @@ const App = () => {
               righteous: require("./assets/fonts/Righteous-Regular.ttf"),
               poiret: require("./assets/fonts/PoiretOne-Regular.ttf"),
               merri: require("./assets/fonts/MerriweatherSans-VariableFont_wght.ttf"),
+              explora: require("./assets/fonts/Explora-Regular.ttf")
             });
           };
   
