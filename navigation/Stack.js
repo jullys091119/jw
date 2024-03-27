@@ -12,6 +12,8 @@ import Texts from "../components/Texts";
 import Questions from "../screens/Questions";
 import Ministry from '../screens/Ministry';
 import WatchTower from '../screens/WatchTower';
+import Reflexions from '../screens/Reflexions';
+
 import { IconHeart, IconWatchTower, IconHome } from '../components/NativePaper';
 
 const Tab = createBottomTabNavigator();
@@ -94,6 +96,18 @@ function MyTabs() {
           tabBarIcon: ({ color, size }) => (
             <MaterialCommunityIcons name="book-open-page-variant-outline" color='white' size={30} />
           ),       
+        }}
+      />
+      <Tab.Screen 
+        name="Reflexions"
+        component={Reflexions}
+        options={{
+          headerShown: false,
+          tabBarIcon: ({ color, size }) => (
+            <MaterialCommunityIcons name="home" color='white' size={30} />
+          ),
+          headerShown: false,
+          headerTintColor: "#fff",       
         }}
       />
     </Tab.Navigator>

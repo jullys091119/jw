@@ -1,8 +1,8 @@
 
 
 import axios from "axios";
-import {API_URL} from '@env'
-
+import Constants from 'expo-constants';
+const API_URL = Constants.expoConfig.extra.build.production.env.EXPO_PUBLIC_API_URL;
 const readData = async () => {
   return await axios.get(`${API_URL}/jwPersonal/jsonapi/node/publicaciones?include=field_publicaciones_img`, {
     "headers": { 'Content-Type': 'application/json' }
@@ -86,8 +86,28 @@ const studyBook = async () => {
 }
 
 
+const getReflexionTimeLine = async () => {
+ return await axios.get(`${API_URL}/jwPersonal/jsonapi/node/reflexiones_biblicas?include=field_reflexion_imagen`, {
+  "headers": {'Content-Type': 'application/json'}
+ }).then((data)=> {
+  const obj = []
+  const reflexion = data.data.data;
+  const value = data.data.included
+  reflexion.forEach((el,index)=> {
+    const dataObj = {
+      img:  value[index].attributes.uri.url,
+      txt:  el.attributes.field_reflexion_texto,
+      txtBible: el.attributes.field_reflexion_texto_biblico
+    }
+    obj.push(dataObj)
+  })
+   return obj
+  }
+  ).catch((error)=> {
+    console.log(error)
+  })
+}
 
 
 
-
-export { readData, readChristianMinistry, watchTowerTopics, studyBook }
+export { readData, readChristianMinistry, watchTowerTopics,studyBook, getReflexionTimeLine}

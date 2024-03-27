@@ -3,7 +3,8 @@ import { View, Text, StyleSheet, ScrollView, Image, TouchableOpacity } from "rea
 import { readChristianMinistry, studyBook } from "../firebase";
 import Accordion from "../components/Acordion";
 import { AvatarBible } from "../components/NativePaper";
-import { API_URL } from '@env'
+import Constants from 'expo-constants';
+const API_URL = Constants.expoConfig.extra.build.production.env.EXPO_PUBLIC_API_URL;
 
 const Ministry = () => {
 

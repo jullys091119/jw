@@ -18,7 +18,6 @@ import { settingQuestions } from "../context/questionsProvider";
 const Home = () => {
   const { modeColor, getValueModeColor } = useContext(modeBlackContext);
   const { setQuestions} = useContext(settingQuestions); 
-  
   const [data, setData] = useState({});
   
   const gettingPublications = async () => {

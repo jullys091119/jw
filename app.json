@@ -4,10 +4,10 @@
     "slug": "jw",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/icon.png",
+    "icon": "./assets/jw.png",
     "userInterfaceStyle": "light",
     "splash": {
-      "image": "./assets/splash.png",
+      "image": "./assets/jw.png",
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
     },
@@ -21,10 +21,34 @@
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#ffffff"
-      }
+      },
+      "package": "com.huerogil.jw"
     },
     "web": {
       "favicon": "./assets/favicon.png"
+    },
+    "extra": {
+      "build": {
+        "production": {
+          "env": {
+            "EXPO_PUBLIC_API_URL": "https://elalfaylaomega.com"
+          }
+        },
+        "test": {
+          "env": {
+            "EXPO_PUBLIC_API_URL": "https://elalfaylaomega.com"
+          }
+        }
+      },
+      "eas": {
+        "projectId": "f855e00b-2bd6-45a0-b0ee-1837ba022b9f"
+      }
+    },
+    "runtimeVersion": {
+      "policy": "appVersion"
+    },
+    "updates": {
+      "url": "https://u.expo.dev/f855e00b-2bd6-45a0-b0ee-1837ba022b9f"
     }
   }
 }
