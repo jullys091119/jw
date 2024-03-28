@@ -76,6 +76,7 @@ const Ministry = () => {
           questions={question.pregunta}
           answers={question.respuesta}
           key={`pregunta-${index}`}
+          style={styles.studyBook}
         />
       );
     });
@@ -207,6 +208,9 @@ const styles = StyleSheet.create({
    width: 70,
    height: 100,
    marginHorizontal: 10
+  }, 
+  studyBook: {
+    backgroundColor: "red"
   }
 
 });
