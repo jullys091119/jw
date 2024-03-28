@@ -67,7 +67,7 @@ const studyBook = async () => {
   }).then((data)=> {
     const dataBook = data.data.data
     let obj = []
-    dataBook.forEach((el)=> {
+    dataBook.forEach((el,index)=> {
       const book = {
         title: el.attributes.title,
         titleChapter: el.attributes.field__libro_titulo,

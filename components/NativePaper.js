@@ -222,7 +222,7 @@ const styles = StyleSheet.create({
   avatarBible: {
     position: "absolute",
     right: 70,
-    top: 14
+    top: 25
   }
 
 
