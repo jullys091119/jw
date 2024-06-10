@@ -50,16 +50,22 @@ const watchTowerTopics = async () => {
    return await axios.get(`${API_URL}/jwPersonal/jsonapi/node/revista_atalaya`, {
     "headers": {'Content-Type': 'application/json'}
    }).then((data)=> {
-    let obj;
-    data.data.data.forEach((questions)=> {
-     obj = questions.attributes.field_atalaya_preg_resp
+    let arr = []
+    data.data.data.forEach((q)=> {
+    
+      const questions = {
+        pregunta: q.attributes.field_atalaya_preguntas,
+        respuesta: q.attributes.field_atalaya_respuestas,
+        parrafo : q.attributes.field_atalaya_parrafos
+      }
+      arr.push(questions)
     })
-     return JSON.parse(obj)
+    return arr
    }).catch(function(err) {
      console.log(err)
-   })
+   })    
 }
-
+       
 
 const studyBook = async () => {
   return await axios.get(`${API_URL}/jwPersonal/jsonapi/node/estudio_del_libro?include=field_libro_img_portada` , {

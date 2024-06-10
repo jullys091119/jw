@@ -1,11 +1,18 @@
-import { IconChevronDown } from "./NativePaper";
+import { IconChevronDown,IconSizeLetters,IconRead,Paragraphs } from "./NativePaper";
 import React, { useState, useEffect } from "react";
-import { View, StyleSheet, TouchableWithoutFeedback, Text, LayoutAnimation, Linking } from "react-native";
+import { View, StyleSheet, TouchableWithoutFeedback, TouchableOpacity, Text, LayoutAnimation} from "react-native";
 import { Tooltip } from "react-native-paper";
+import Slider from "@react-native-community/slider";
 
-const Accordion = ({ questions, answers }) => {
+
+
+
+const Accordion = ({ questions, answers,  paragraphs }) => {
   const [opened, setOpened] = useState(false);
   const [tooltip,  setTooltip] = useState("")
+  const [size, setSize] = useState(16)
+  const [visible, setVisible] = useState(false);
+
   function toggleAccordion() {
     LayoutAnimation.configureNext({
       duration: 300,
@@ -31,17 +38,26 @@ const Accordion = ({ questions, answers }) => {
 
     }
   }
+  
+  const doBiggerLetter = (size) => {
+    setSize(size);
+  };
 
+  const openParagaphs = () => {
+    setVisible(!visible);
+  };
+  
   const ReturnAnswer = () => {
     return (
-      <>
-        <Text style={styles.details}>{answers}</Text>
-      </>
+      <View style={styles.container}>
+        <Text style={[styles.details, { fontSize: size }]}>{answers}</Text>
+      </View>  
     );
   };
 
   return (
     <View style={styles.container}>
+      <Paragraphs  visibleParagraphs={visible} paragraphs={paragraphs}/>
       <TouchableWithoutFeedback onPress={toggleAccordion}>
         <View style={styles.header}>
           <Text style={styles.title}>{questions}</Text>
@@ -53,8 +69,34 @@ const Accordion = ({ questions, answers }) => {
         <View style={styles.content}>
            <ReturnAnswer/>
             <View style= {styles.containerTooltip}>
-            <ReturnTexts/>
+            <IconSizeLetters/>
+            <View style={{display: "flex", flexDirection: "row-reverse"}}>
+              <Slider
+                value={size}
+                onValueChange={(value) => doBiggerLetter(value)}
+                style={{ width: "100%" }}
+                minimumValue={15}
+                maximumValue={24}
+                minimumTrackTintColor="white"
+                maximumTrackTintColor="transparent"
+                thumbTintColor="white"
+              />
             </View>
+           </View>
+          <View style={{height: 90, display: "flex", flexDirection: "row", justifyContent: "center", alignItems: "center", gap: 20}}>
+             <TouchableOpacity onPress={()=> {openParagaphs()}}>
+                <View style={styles.read}>
+                  <IconRead />
+                </View>
+                <Text style={styles.txtMenu}>Leer</Text>
+             </TouchableOpacity>
+              <View>
+                <View style={styles.read}>
+                  <Text style={{fontSize: 10, color: "black", padding: 4, fontWeight: "800"}}>{size.toFixed()}px</Text>
+                </View>
+                <Text style={styles.txtMenu}>tamaño</Text>
+              </View>
+          </View>
         </View>
       )}
     </View>
@@ -63,11 +105,12 @@ const Accordion = ({ questions, answers }) => {
 
 const styles = StyleSheet.create({
   container: {
-    marginHorizontal: 10,
-    marginVertical: 20,
+    marginHorizontal: 5,
+    marginVertical: 15,
     borderRadius: 6,
-    backgroundColor: "white",
-    padding: 17
+    backgroundColor: "#800080",
+    padding: 9,
+    position: "relative"
   },
 
   header: {
@@ -79,18 +122,17 @@ const styles = StyleSheet.create({
     fontWeight: "600",
     fontFamily: "merri",
     fontSize: 15,
-    color:"#333333",
-    maxWidth: 220
+    color:"white",
+    maxWidth: 220,
+    marginLeft: 10
   },
   content: {
-    marginTop: 8,
+   
   },
   details: {
     fontFamily: "merri",
-    lineHeight: 50,
-    fontSize: 18,
-    textAlign:"left",
-    color: "#333333"
+    color: "white",
+    lineHeight: 40
   },
   tooltip: {
     margin: 2,
@@ -101,12 +143,27 @@ const styles = StyleSheet.create({
     textAlign: "center",
     fontSize: 10,
   }, 
+
   containerTooltip: {
     display: "flex",
     flexDirection: "row",
     flexWrap: "wrap",
     marginTop: 20,
     gap: 2
+  },
+
+  read: {
+    backgroundColor: "white",
+    height: 44,
+    width: 44,
+    borderRadius: 100,
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center"
+  },
+  txtMenu: {
+    color: "white",
+    textAlign: "center"
   }
 });
 

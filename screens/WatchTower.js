@@ -3,8 +3,11 @@ import { View, Text, StyleSheet, ScrollView } from "react-native";
 import { watchTowerTopics } from "../firebase";
 import Accordion from "../components/Acordion";
 
+
+
 const WatchTower = () => {
   const [data, setData] = useState([]);
+
 
   useEffect(() => {
     const fetchData = async () => {
@@ -21,13 +24,16 @@ const WatchTower = () => {
         <View style={styles.containerTitle}>
           <Text style={styles.title}>Respuesta Revista Atalaya</Text>
         </View>
-        {data.map((question, index) => (
-          <Accordion
+        {data.map((question, index) => {
+          return (
+            <Accordion
             key={index}
             questions={question.pregunta}
             answers={question.respuesta}
-          />
-        ))}
+            paragraphs={question.parrafo}
+            />
+          )
+        })}
       </View>
     </ScrollView>
   );
@@ -47,6 +53,8 @@ const styles = StyleSheet.create({
     fontSize: 25,
     textAlign: "center",
     paddingVertical: 18,
+    color: "#800080",
+    fontWeight: "800"
   },
 });
 
