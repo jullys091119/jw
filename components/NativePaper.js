@@ -1,10 +1,12 @@
-import { useContext, useEffect, useState } from "react";
-import { Button, Card, Avatar, IconButton,Title } from "react-native-paper";
-import { StyleSheet, Text, View } from "react-native";
+import  React,{ useContext, useEffect, useState } from "react";
+import { Button, Card, Avatar, IconButton,Title,Dialog,Portal,Text } from "react-native-paper";
+import { StyleSheet,  View, ScrollView } from "react-native";
 import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
 import { useNavigation } from "@react-navigation/native";
 import { modeBlackContext } from "../context/context";
 import { settingQuestions } from "../context/questionsProvider";
+
+
 
 
 const Icon = ({ color }) => (
@@ -17,17 +19,19 @@ const IconChevronDown = ({ color, opened, id }) => {
   return (
     <>
       <View>
-        <MaterialCommunityIcons name={opened ? "chevron-up" : "chevron-down"} size={30} color="#333333" />
+        <MaterialCommunityIcons name={opened ? "chevron-up" : "chevron-down"} size={30} color="white" />
       </View>
     </>
   );
 };
+ 
+
 
 const IconHeart = () => {
   return (
     <>
       <View>
-        <MaterialCommunityIcons name={"heart-multiple-outline"} size={25} color="purple" />
+        <MaterialCommunityIcons name={"heart-multiple-outline"} size={25} color="purple"/>
       </View>
     </>
   );
@@ -53,9 +57,55 @@ const IconHome = () => {
   );
 };
 
+const IconSizeLetters = () => {
+  return (
+    <>
+      <View>
+        <MaterialCommunityIcons name={"format-letter-case"} size={25} color="white" marginLeft={13} />
+      </View>
+    </>
+  );
+};
+
+const IconRead = () => {
+  return (
+    <>
+      <View>
+        <MaterialCommunityIcons name={"read"} size={20} color="#800080" style={{marginTop: 0}}/>
+      </View>
+    </>
+  );
+};
+
+
 const LogoJw = () => (
   <Avatar.Image size={30} source={require('../assets/jw.png')} />
 );
+const Paragraphs = ({ visibleParagraphs, paragraphs }) => {
+  const [visible, setVisible] = useState(true);
+  const hideDialog = () => setVisible(false);
+
+  useEffect(() => {
+    setVisible(!visible);
+  }, [visibleParagraphs, paragraphs]);
+    
+  return (
+    <Portal>
+      <Dialog visible={visible} onDismiss={hideDialog}>
+        <Dialog.ScrollArea>
+          <ScrollView contentContainerStyle={{ paddingHorizontal: 10 }}>
+            {
+              paragraphs!== null &&
+              <Text style= {{fontSize: 16, lineHeight: 30, fontWeight: "700", textAlign: "left"}}>
+              {paragraphs}
+              </Text>
+            }
+          </ScrollView>
+        </Dialog.ScrollArea>
+      </Dialog>
+    </Portal>
+  );
+};
 
 const IconSunOn = ({ color }) => {
   const [isClicked, setIsClicked] = useState(false);
@@ -66,7 +116,7 @@ const IconSunOn = ({ color }) => {
     setIsClicked(!isClicked)
     setModeColor(isClicked ? "#ffffff" : "#333333");
   };
-
+  
   return (
     <View>
       {modeColor == '#333333' ? (
@@ -238,5 +288,9 @@ CardSettingPublication,
 SearchContent,
 LogoJw,
 IconChevronDown,
-AvatarBible
+AvatarBible,
+IconSizeLetters,
+IconRead,
+Paragraphs
+
 };
