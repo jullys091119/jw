@@ -4,10 +4,10 @@
     "slug": "jw",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/jw.png",
+    "icon": "./assets/jw.jpg",
     "userInterfaceStyle": "light",
     "splash": {
-      "image": "./assets/jw.png",
+      "image": "./assets/jw.jpg",
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
     },
@@ -20,7 +20,7 @@
     },
     "android": {
       "adaptiveIcon": {
-        "foregroundImage": "./assets/adaptive-icon.png",
+        "foregroundImage": "./assets/jw.jpg",
         "backgroundColor": "#ffffff"
       },
       "package": "com.huerogil.jw"
